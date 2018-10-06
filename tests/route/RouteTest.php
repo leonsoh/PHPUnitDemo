@@ -60,19 +60,11 @@ final class RouteTest extends TestCase
 		$this->assertEquals($length, $route->length());
 	}
 
+	/**
+     * @dataProvider routeLengthProvider
+     */
 
-	public function testHasSameLengthAndColor(): void
-	{
-		$city1 = new City("Paris");
-		$city2 = new City("Tokyo");
-
-		$route = new Route($city1, $city2, Color::blue(), Length::two());
-
-		$this->assertContains(needle, haystack);
-	}
-
-
-	public function testCanHaveLength(Length $length, int $expected)
+	public function testCanHaveLength(Length $length, int $expected): void
 	{
 
 		$city1 = new City("Paris");
@@ -83,15 +75,49 @@ final class RouteTest extends TestCase
 		$this->assertEquals($expected, $route->length()->asInteger());
 	}
 
-	public function testCanHaveColor(Color $color, Color $expected)
+
+	/**
+     * @dataProvider routeColorProvider
+     */
+
+	public function testCanHaveColor(Color $color, String $expected): void
 	{
 		$city1 = new City("Paris");
 		$city2 = new City("Tokyo");
 
 		$route = new Route($city1, $city2, $color, Length::two());
 
-		$this->assertEquals($expected, $route->color());
+		$this->assertEquals($expected, $route->color()->asString());
 	}
+
+
+	public function routeLengthProvider(): array
+    {
+        return [
+            'one' => [Length::one(), 1],
+            'two' => [Length::two(), 2],
+            'three' => [Length::three(), 3],
+            'four' => [Length::four(), 4],
+            'five' => [Length::five(), 5],
+            'six' => [Length::six(), 6],
+        ];
+    }
+
+
+    public function routeColorProvider(): array
+    {
+    	 return [
+            'blue' => [Color::blue(), "blue"],
+            'white' => [Color::white(), "white"],
+            'purple' => [Color::purple(), "purple"],
+            'yellow' => [Color::yellow(), "yellow"],
+            'orange' => [Color::orange(), "orange"],
+            'red' => [Color::red(), "red"],
+            'green' => [Color::green(), "green"],
+            'black' => [Color::black(), "black"],
+            'wildcard' => [Color::wildcard(), "wildcard"],
+        ];
+    }
 
 
 }
