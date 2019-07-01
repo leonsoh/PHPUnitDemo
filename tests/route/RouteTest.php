@@ -37,7 +37,7 @@ final class RouteTest extends TestCase
 	public function testCanBePurpleColor(): void
 	{
 		
-		$city1 = new City("Paris");
+	$city1 = new City("Paris");
     	$city2 = new City("Tokyo");
 
     	$color = Color::purple();
